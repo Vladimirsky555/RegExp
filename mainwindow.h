@@ -15,6 +15,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
+
+private slots:
+    void on_actionOpenFile_triggered();
+
+private:
+    bool checkRegExp(QRegExp rx);
+
 private:
     Ui::MainWindow *ui;
 };
