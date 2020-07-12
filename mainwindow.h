@@ -24,14 +24,14 @@ public:
 private slots:
     void on_actionOpenFile_triggered();
 
-    void search_and_show(QString pattern);
+    void search_and_show();
     void on_btnEmail_clicked();
     void on_btnLink_clicked();
 
     void on_btnSearch_clicked();
     void on_btnClear_clicked();
-    void on_edtPattern_editingFinished();
 
+    void on_lstWindow_doubleClicked(const QModelIndex &index);
 
 private:
     bool checkRegExp(QRegExp rx);

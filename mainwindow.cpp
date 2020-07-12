@@ -3,6 +3,8 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDesktopServices>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -60,70 +62,42 @@ void MainWindow::on_actionOpenFile_triggered()
     }
 }
 
-void MainWindow::search_and_show(QString pattern)
+void MainWindow::search_and_show()
 {
-    QRegExp rx(pattern);
-    QStringList list;
+        QRegExp rx(ui->edtPattern->text());
+        QStringList list;
 
-    //Ищем ютубовскую ссылку
-    int pos = 0;
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        pos += rx.matchedLength();
-        list << rx.cap(0);
-    }
+        //Ищем ютубовскую ссылку
+        int pos = 0;
+        int i = 0;
+        while ((pos = rx.indexIn(str, pos)) != -1) {
+            i++;
+            pos += rx.matchedLength();
+            list << QString::number(i) + ": " + rx.cap(0);
+        }
 
-    ui->lstWindow->addItems(list);
+        ui->lstWindow->addItems(list);
 }
+
 
 void MainWindow::on_btnEmail_clicked()
 {
-    search_and_show("[a-zA-Z0-9-_]{11}");
+    QString pattern = "[a-zA-Z0-9-_]{11}";
+    ui->edtPattern->setText(pattern);
+    search_and_show();
 }
 
 void MainWindow::on_btnLink_clicked()
 {
-    //search_and_show("http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?");
-    QRegExp rx("http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?");
-    QStringList list;
-
-    //Ищем ютубовскую ссылку
-    int pos = 0;
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        pos += rx.matchedLength();
-        list << rx.cap(0);
-    }
-
-    ui->lstWindow->addItems(list);
+    QString pattern = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
+    ui->edtPattern->setText(pattern);
+    search_and_show();
 }
 
-void MainWindow::on_edtPattern_editingFinished()
-{
-    QRegExp rx(ui->edtPattern->text());
-    QStringList list;
-
-    //Ищем ютубовскую ссылку
-    int pos = 0;
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        pos += rx.matchedLength();
-        list << rx.cap(0);
-    }
-
-    ui->lstWindow->addItems(list);
-}
 
 void MainWindow::on_btnSearch_clicked()
 {
-    QRegExp rx(ui->edtPattern->text());
-    QStringList list;
-
-    //Ищем ютубовскую ссылку
-    int pos = 0;
-    while ((pos = rx.indexIn(str, pos)) != -1) {
-        pos += rx.matchedLength();
-        list << rx.cap(0);
-    }
-
-    ui->lstWindow->addItems(list);
+    search_and_show();
 }
 
 void MainWindow::on_btnClear_clicked()
@@ -132,5 +106,21 @@ void MainWindow::on_btnClear_clicked()
 }
 
 
+void MainWindow::on_lstWindow_doubleClicked(const QModelIndex &index)
+{
+    QString pattern = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
+    QRegExp rx(pattern);
+    QString link;
 
+     int pos = 0;
+    QString tmp = ui->lstWindow->item(index.row())->text();
+    while ((pos = rx.indexIn(tmp, pos)) != -1) {
+        pos += rx.matchedLength();
+        link = rx.cap(0);
+    }
 
+    if (link == "") return;
+    else {
+        QDesktopServices::openUrl(QUrl(link));
+    }
+}
