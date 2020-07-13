@@ -7,5 +7,6 @@
         <file>images/email.png</file>
         <file>images/Clear.png</file>
         <file>images/copy.png</file>
+        <file>images/app.ico</file>
     </qresource>
 </RCC>
