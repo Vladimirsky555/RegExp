@@ -33,6 +33,8 @@ private slots:
 
     void on_lstWindow_doubleClicked(const QModelIndex &index);
 
+    void on_actionSiteParser_triggered();
+
 private:
     bool checkRegExp(QRegExp rx);
 

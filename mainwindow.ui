@@ -53,7 +53,7 @@
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QTextEdit" name="edtText"/>
@@ -158,8 +158,13 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpenFile"/>
+   <addaction name="actionSiteParser"/>
   </widget>
   <action name="actionOpenFile">
+   <property name="icon">
+    <iconset resource="bin/res.qrc">
+     <normaloff>:/images/open-folder.png</normaloff>:/images/open-folder.png</iconset>
+   </property>
    <property name="text">
     <string>Открыть файл</string>
    </property>
@@ -167,8 +172,22 @@
     <string>Открыть файл</string>
    </property>
   </action>
+  <action name="actionSiteParser">
+   <property name="icon">
+    <iconset resource="bin/res.qrc">
+     <normaloff>:/images/link.png</normaloff>:/images/link.png</iconset>
+   </property>
+   <property name="text">
+    <string>Парсить сайт</string>
+   </property>
+   <property name="toolTip">
+    <string>Парсить сайт</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="bin/res.qrc"/>
+ </resources>
  <connections/>
 </ui>

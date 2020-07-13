@@ -64,6 +64,7 @@ void MainWindow::on_actionOpenFile_triggered()
 
 void MainWindow::search_and_show()
 {
+        str = ui->edtText->toPlainText();
         QRegExp rx(ui->edtPattern->text());
         QStringList list;
 
@@ -123,4 +124,9 @@ void MainWindow::on_lstWindow_doubleClicked(const QModelIndex &index)
     else {
         QDesktopServices::openUrl(QUrl(link));
     }
+}
+
+void MainWindow::on_actionSiteParser_triggered()
+{
+
 }
