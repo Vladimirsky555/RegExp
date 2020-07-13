@@ -38,6 +38,11 @@
           <property name="text">
            <string>Поиск</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normalon>:/images/search.png</normalon>
+           </iconset>
+          </property>
          </widget>
         </item>
        </layout>
@@ -85,6 +90,11 @@
         <property name="text">
          <string>Email</string>
         </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/images/email.png</normalon>
+         </iconset>
+        </property>
        </widget>
       </item>
       <item>
@@ -97,17 +107,10 @@
         <property name="text">
          <string>Links</string>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnYouTube">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>YouTube_links</string>
+        <property name="icon">
+         <iconset>
+          <normalon>:/images/seo-and-web.png</normalon>
+         </iconset>
         </property>
        </widget>
       </item>
@@ -125,6 +128,23 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="btnCopy">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Скопировать</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/images/copy.png</normalon>
+         </iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="btnClear">
         <property name="font">
          <font>
@@ -132,7 +152,12 @@
          </font>
         </property>
         <property name="text">
-         <string>Очистка</string>
+         <string>Очистить</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normalon>:/images/Clear.png</normalon>
+         </iconset>
         </property>
        </widget>
       </item>
@@ -160,6 +185,7 @@
    <addaction name="actionOpenFile"/>
    <addaction name="actionSiteParser"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpenFile">
    <property name="icon">
     <iconset resource="bin/res.qrc">

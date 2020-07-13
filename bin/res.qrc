@@ -2,5 +2,10 @@
     <qresource prefix="/">
         <file>images/link.png</file>
         <file>images/open-folder.png</file>
+        <file>images/search.png</file>
+        <file>images/seo-and-web.png</file>
+        <file>images/email.png</file>
+        <file>images/Clear.png</file>
+        <file>images/copy.png</file>
     </qresource>
 </RCC>
