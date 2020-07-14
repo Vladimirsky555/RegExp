@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow
     QString str;
     QString currentTxt;
     QLabel *label;
+    QStringList list;//список, в котором нет цифр и  : при копировании
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -39,9 +40,7 @@ private slots:
     void on_lstWindow_doubleClicked(const QModelIndex &index);
      void on_actionOpenFile_triggered();
     void on_actionSiteParser_triggered();
-
     void on_btnCopy_clicked();
-
     void on_lstWindow_clicked(const QModelIndex &index);
 
 private:

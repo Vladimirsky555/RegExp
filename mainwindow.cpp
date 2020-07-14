@@ -64,8 +64,7 @@ bool MainWindow::checkRegExp(QRegExp rx)
     if(rx.isValid() && !rx.isEmpty() && !rx.exactMatch("")){
         return true;
     }else{
-        QMessageBox::information(this,
-                                 "Информсообщение",
+        QMessageBox::information(this, "Информсообщение",
                                  trUtf8("Некорректный шаблон регулярного выражения!"));
         return false;
     }
@@ -75,7 +74,6 @@ void MainWindow::on_actionOpenFile_triggered()
 {
     QFileDialog dialog;
     QFile f(dialog.getOpenFileName());
-//    QFile f("bookmarks_12.07.2020.html");
     if(f.open(QIODevice::ReadOnly)){
         QTextStream stream(&f);
         str = stream.readAll();
@@ -91,18 +89,18 @@ void MainWindow::search_and_show()
 
     str = ui->edtText->toHtml();
     QRegExp rx(ui->edtPattern->text());
-    QStringList list;
+    QStringList tmp_list;
 
-    //Ищем ютубовскую ссылку
     int pos = 0;
     int i = 0;
     while ((pos = rx.indexIn(str, pos)) != -1) {
         i++;
         pos += rx.matchedLength();
-        list << QString::number(i) + ": " + rx.cap(0);
+        tmp_list << QString::number(i) + ": " + rx.cap(0);//список для вывода на экран
+        list << rx.cap(0);//список для копирования одиночных элементов
     }
 
-    ui->lstWindow->addItems(list);
+    ui->lstWindow->addItems(tmp_list);
 }
 
 
@@ -176,5 +174,6 @@ void MainWindow::on_btnCopy_clicked()
 void MainWindow::on_lstWindow_clicked(const QModelIndex &index)
 {
     ui->btnCopy->setEnabled(true);
-    currentTxt = ui->lstWindow->item(index.row())->text();
+//    currentTxt = ui->lstWindow->item(index.row())->text();
+    currentTxt = list.at(index.row());
 }
